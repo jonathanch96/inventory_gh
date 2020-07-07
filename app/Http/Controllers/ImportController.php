@@ -23,6 +23,11 @@ class ImportController extends Controller
     	],[]);
     	$data = Excel::toCollection(new ItemLedgerEntryImport,$request->file('import_file'));
     	$data = $data[0]->where('quantity','<>','0');
+        //change date
+        foreach ($data as $key => $d) {
+            $d['date']=\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($d['date'])->format('Y-m-d');
+        }
+
         if (count($data)==0){
             return redirect('item-ledger-entries')->with([
                 'message'    => 'Tidak ada data/quantity 0',
@@ -85,7 +90,7 @@ class ImportController extends Controller
                 'document_type_name'=>'upload-logs',
                 'document_id'=>null,
                 'quantity'=>$d->quantity,
-                'date'=>Carbon::now(),
+                'date'=>$d->date,
             ]);
             //recal item
             $this->updateItemLedger($item_data->id,Carbon::now());

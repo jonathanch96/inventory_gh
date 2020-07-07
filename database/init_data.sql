@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 4.9.5
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jul 07, 2020 at 08:16 AM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.3
+-- Host: localhost:3306
+-- Generation Time: Jul 07, 2020 at 02:06 PM
+-- Server version: 10.1.45-MariaDB-cll-lve
+-- PHP Version: 7.3.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `inventory_gh`
+-- Database: `grahacitrapratam_inventory_gh`
 --
 
 -- --------------------------------------------------------
@@ -34,14 +34,14 @@ CREATE TABLE `data_rows` (
   `field` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `type` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `display_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `required` tinyint(1) NOT NULL DEFAULT 0,
-  `browse` tinyint(1) NOT NULL DEFAULT 1,
-  `read` tinyint(1) NOT NULL DEFAULT 1,
-  `edit` tinyint(1) NOT NULL DEFAULT 1,
-  `add` tinyint(1) NOT NULL DEFAULT 1,
-  `delete` tinyint(1) NOT NULL DEFAULT 1,
-  `details` text COLLATE utf8_unicode_ci DEFAULT NULL,
-  `order` int(11) NOT NULL DEFAULT 1
+  `required` tinyint(1) NOT NULL DEFAULT '0',
+  `browse` tinyint(1) NOT NULL DEFAULT '1',
+  `read` tinyint(1) NOT NULL DEFAULT '1',
+  `edit` tinyint(1) NOT NULL DEFAULT '1',
+  `add` tinyint(1) NOT NULL DEFAULT '1',
+  `delete` tinyint(1) NOT NULL DEFAULT '1',
+  `details` text COLLATE utf8_unicode_ci,
+  `order` int(11) NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -89,7 +89,7 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (117, 7, 'item_belongsto_item_base_unit_relationship_1', 'relationship', 'Satuan 2', 0, 0, 0, 0, 0, 0, '{\"model\":\"App\\\\Model\\\\ItemBaseUnit\",\"table\":\"item_base_units\",\"type\":\"belongsTo\",\"column\":\"item_base_unit_2_id\",\"key\":\"id\",\"label\":\"base_unit_name\",\"pivot_table\":\"data_rows\",\"pivot\":\"0\",\"taggable\":\"0\"}', 13),
 (129, 13, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
 (130, 13, 'document_no', 'text', 'Nomor SJ', 1, 1, 1, 1, 1, 1, '{\"display\":{\"width\":\"6\"},\"validation\":{\"rule\":\"required\",\"messages\":{\"required\":\":attribute tidak boleh kosong.\"}}}', 2),
-(131, 13, 'document_date', 'date', 'Tanggal SJ', 1, 1, 1, 1, 1, 1, '{\"display\":{\"width\":\"6\"},\"format\":\"%d-%m-%Y\"}', 3),
+(131, 13, 'document_date', 'date', 'Tanggal SJ', 1, 1, 1, 1, 1, 1, '{\"display\":{\"width\":\"6\"},\"format\":\"%d-%m-%Y\",\"validation\":{\"rule\":\"required\",\"messages\":{\"required\":\":attribute tidak boleh kosong.\"}}}', 3),
 (132, 13, 'document_memo', 'text', 'Nama Supir', 0, 1, 1, 1, 1, 1, '{\"display\":{\"width\":\"6\"}}', 5),
 (133, 13, 'document_memo_2', 'text', 'Nama Customer', 0, 1, 1, 1, 1, 1, '{\"display\":{\"width\":\"6\"}}', 4),
 (134, 13, 'external_document', 'text', 'Nomor SO', 0, 1, 1, 1, 1, 1, '{\"display\":{\"width\":\"6\"}}', 6),
@@ -139,7 +139,7 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (181, 16, 'deleted_at', 'timestamp', 'Deleted At', 0, 0, 0, 0, 0, 0, '{}', 14),
 (182, 17, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
 (183, 17, 'document_no', 'text', 'Nomor Container', 1, 1, 1, 1, 1, 1, '{\"display\":{\"width\":\"6\"},\"validation\":{\"rule\":\"required\",\"messages\":{\"required\":\":attribute tidak boleh kosong.\"}}}', 2),
-(184, 17, 'document_date', 'date', 'Tanggal Barang Masuk', 1, 1, 1, 1, 1, 1, '{\"display\":{\"width\":\"6\"},\"format\":\"%d-%m-%Y\"}', 4),
+(184, 17, 'document_date', 'date', 'Tanggal Barang Masuk', 1, 1, 1, 1, 1, 1, '{\"display\":{\"width\":\"6\"},\"format\":\"%d-%m-%Y\",\"validation\":{\"rule\":\"required\",\"messages\":{\"required\":\":attribute tidak boleh kosong.\"}}}', 4),
 (185, 17, 'document_memo', 'text_area', 'Catatan', 0, 1, 1, 1, 1, 1, '{\"display\":{\"width\":\"6\"}}', 5),
 (186, 17, 'document_memo_2', 'text', 'Document Memo 2', 0, 0, 0, 0, 0, 0, '{}', 6),
 (187, 17, 'external_document', 'text', 'Nomor VO', 0, 1, 1, 1, 1, 1, '{\"display\":{\"width\":\"6\"}}', 3),
@@ -150,8 +150,8 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (192, 16, 'purchase_detail_belongsto_item_relationship_1', 'relationship', 'Kode Barang', 0, 1, 1, 0, 0, 0, '{\"model\":\"App\\\\Model\\\\Item\",\"table\":\"items\",\"type\":\"belongsTo\",\"column\":\"item_id\",\"key\":\"id\",\"label\":\"item_code_w_variant\",\"pivot_table\":\"data_rows\",\"pivot\":\"0\",\"taggable\":\"0\"}', 7),
 (193, 15, 'date', 'date', 'Tanggal', 0, 1, 1, 1, 1, 1, '{}', 2),
 (194, 18, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
-(195, 18, 'document_no', 'text', 'Nomor Retur', 1, 1, 1, 1, 1, 1, '{\"display\":{\"width\":\"6\"},\"validation\":{\"rule\":\"required|unique:sales_return_headers,document_no\",\"messages\":{\"required\":\":attribute tidak boleh kosong.\",\"unique\":\":attribute sudah ada (Duplikat)\"}}}', 2),
-(196, 18, 'document_date', 'date', 'Tanggal Retur', 1, 1, 1, 1, 1, 1, '{\"display\":{\"width\":\"6\"},\"format\":\"%d-%m-%Y\"}', 3),
+(195, 18, 'document_no', 'text', 'Nomor Retur', 1, 1, 1, 1, 1, 1, '{\"display\":{\"width\":\"6\"},\"validation\":{\"rule\":\"required\",\"messages\":{\"required\":\":attribute tidak boleh kosong.\"}}}', 2),
+(196, 18, 'document_date', 'date', 'Tanggal Retur', 1, 1, 1, 1, 1, 1, '{\"display\":{\"width\":\"6\"},\"format\":\"%d-%m-%Y\",\"validation\":{\"rule\":\"required\",\"messages\":{\"required\":\":attribute tidak boleh kosong.\"}}}', 3),
 (197, 18, 'document_memo', 'text_area', 'Catatan', 0, 1, 1, 1, 1, 1, '{\"display\":{\"width\":\"6\"}}', 7),
 (198, 18, 'document_memo_2', 'text', 'Nama Customer', 0, 1, 1, 1, 1, 1, '{\"display\":{\"width\":\"6\"}}', 6),
 (199, 18, 'external_document', 'text', 'Nomor Nota', 0, 1, 1, 1, 1, 1, '{\"display\":{\"width\":\"6\"}}', 4),
@@ -196,8 +196,8 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (238, 21, 'updated_at', 'timestamp', 'Updated At', 0, 0, 0, 0, 0, 0, '{}', 14),
 (239, 21, 'deleted_at', 'timestamp', 'Deleted At', 0, 0, 0, 0, 0, 0, '{}', 15),
 (240, 22, 'id', 'text', 'Id', 1, 0, 0, 0, 0, 0, '{}', 1),
-(241, 22, 'document_no', 'text', 'Document No', 1, 1, 1, 1, 1, 1, '{\"display\":{\"width\":\"6\"},\"validation\":{\"rule\":\"required|unique:sales_return_headers,document_no\",\"messages\":{\"required\":\":attribute tidak boleh kosong.\",\"unique\":\":attribute sudah ada (Duplikat)\"}}}', 2),
-(242, 22, 'document_date', 'date', 'Tanggal', 0, 1, 1, 1, 1, 1, '{\"display\":{\"width\":\"6\"},\"format\":\"%d-%m-%Y\"}', 3),
+(241, 22, 'document_no', 'text', 'Document No', 1, 1, 1, 1, 1, 1, '{\"display\":{\"width\":\"6\"},\"validation\":{\"rule\":\"required\",\"messages\":{\"required\":\":attribute tidak boleh kosong.\"}}}', 2),
+(242, 22, 'document_date', 'date', 'Tanggal', 0, 1, 1, 1, 1, 1, '{\"display\":{\"width\":\"6\"},\"format\":\"%d-%m-%Y\",\"validation\":{\"rule\":\"required\",\"messages\":{\"required\":\":attribute tidak boleh kosong.\"}}}', 3),
 (243, 22, 'document_memo', 'text_area', 'Catatan', 0, 1, 1, 1, 1, 1, '{\"display\":{\"width\":\"6\"}}', 5),
 (244, 22, 'document_memo_2', 'text', 'Document Memo 2', 0, 0, 0, 0, 0, 0, '{}', 6),
 (245, 22, 'external_document', 'text', 'Dokumen Pendukung', 0, 1, 1, 1, 1, 1, '{\"display\":{\"width\":\"6\"}}', 4),
@@ -211,7 +211,10 @@ INSERT INTO `data_rows` (`id`, `data_type_id`, `field`, `type`, `display_name`, 
 (253, 21, 'opname_stock_detail_belongsto_item_relationship_1', 'relationship', 'Nama Barang', 0, 1, 1, 1, 1, 1, '{\"display\":{\"width\":\"6\"},\"model\":\"App\\\\Model\\\\Item\",\"table\":\"items\",\"type\":\"belongsTo\",\"column\":\"item_id\",\"key\":\"id\",\"label\":\"item_name\",\"pivot_table\":\"data_rows\",\"pivot\":\"0\",\"taggable\":\"0\"}', 8),
 (254, 21, 'memo', 'text', 'Catatan', 0, 1, 1, 1, 1, 1, '{}', 10),
 (255, 15, 'balance', 'text', 'Saldo', 1, 0, 0, 0, 0, 0, '{}', 18),
-(256, 15, 'document_detail_id', 'text', 'Document Detail Id', 0, 0, 0, 0, 0, 0, '{}', 7);
+(256, 15, 'document_detail_id', 'text', 'Document Detail Id', 0, 0, 0, 0, 0, 0, '{}', 7),
+(257, 18, 'creator_id', 'text', 'Creator Id', 0, 0, 0, 0, 0, 0, '{}', 11),
+(258, 13, 'creator_id', 'text', 'Creator Id', 0, 0, 0, 0, 0, 0, '{}', 12),
+(259, 17, 'creator_id', 'text', 'Creator Id', 0, 0, 0, 0, 0, 0, '{}', 10);
 
 -- --------------------------------------------------------
 
@@ -230,9 +233,9 @@ CREATE TABLE `data_types` (
   `policy_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `controller` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `generate_permissions` tinyint(1) NOT NULL DEFAULT 0,
-  `server_side` tinyint(4) NOT NULL DEFAULT 0,
-  `details` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `generate_permissions` tinyint(1) NOT NULL DEFAULT '0',
+  `server_side` tinyint(4) NOT NULL DEFAULT '0',
+  `details` text COLLATE utf8_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -247,16 +250,16 @@ INSERT INTO `data_types` (`id`, `name`, `slug`, `display_name_singular`, `displa
 (3, 'roles', 'roles', 'Role', 'Roles', 'voyager-lock', 'TCG\\Voyager\\Models\\Role', NULL, 'TCG\\Voyager\\Http\\Controllers\\VoyagerRoleController', '', 1, 0, NULL, '2020-06-17 00:27:42', '2020-06-17 00:27:42'),
 (7, 'items', 'items', 'Item', 'Items', 'voyager-bag', 'App\\Model\\Item', NULL, '\\App\\Http\\Controllers\\Voyager\\ItemController', NULL, 1, 1, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":\"item_name\",\"scope\":null}', '2020-06-17 00:28:07', '2020-07-06 23:02:16'),
 (8, 'item_base_units', 'item-base-units', 'Item Base Unit', 'Item Base Units', 'voyager-file-text', 'App\\Model\\ItemBaseUnit', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-06-17 00:28:15', '2020-06-26 00:44:46'),
-(13, 'sales_headers', 'pengeluaran-stok', 'Pengeluaran Stok', 'Pengeluaran Stok', 'voyager-truck', 'App\\Model\\SalesHeader', NULL, '\\App\\Http\\Controllers\\Voyager\\PengeluaranStockController', NULL, 1, 1, '{\"order_column\":\"document_no\",\"order_display_column\":\"document_no\",\"order_direction\":\"desc\",\"default_search_key\":\"document_no\",\"scope\":null}', '2020-06-17 21:20:02', '2020-07-03 00:36:30'),
+(13, 'sales_headers', 'pengeluaran-stok', 'Pengeluaran Stok', 'Pengeluaran Stok', 'voyager-truck', 'App\\Model\\SalesHeader', NULL, '\\App\\Http\\Controllers\\Voyager\\PengeluaranStockController', NULL, 1, 1, '{\"order_column\":\"document_no\",\"order_display_column\":\"document_no\",\"order_direction\":\"desc\",\"default_search_key\":\"document_no\",\"scope\":null}', '2020-06-17 21:20:02', '2020-07-07 00:05:47'),
 (14, 'sales_details', 'pengeluaran-stok-details', 'Pengeluaran Stok Detail', 'Pengeluaran Stok Details', 'voyager-truck', 'App\\Model\\SalesDetail', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-06-19 03:40:02', '2020-06-25 21:26:20'),
 (15, 'item_ledger_entries', 'item-ledger-entries', 'Item Ledger Entry', 'Item Ledger Entries', 'voyager-book', 'App\\Model\\ItemLedgerEntry', NULL, NULL, NULL, 1, 1, '{\"order_column\":\"date\",\"order_display_column\":\"date\",\"order_direction\":\"desc\",\"default_search_key\":\"item_code\",\"scope\":null}', '2020-06-23 21:24:27', '2020-07-06 23:04:47'),
 (16, 'purchase_details', 'barang-masuk-details', 'Barang Masuk Detail', 'Barang Masuk Detail', 'voyager-plus', 'App\\Model\\PurchaseDetail', NULL, NULL, 'Surat Jalan Pembelian ( Penambahan Stok )', 1, 1, '{\"order_column\":\"document_header_id\",\"order_display_column\":\"document_header_id\",\"order_direction\":\"desc\",\"default_search_key\":\"document_header_id\",\"scope\":null}', '2020-06-25 00:26:49', '2020-07-03 03:15:06'),
-(17, 'purchase_headers', 'barang-masuk', 'Barang Masuk', 'Barang Masuk', 'voyager-plus', 'App\\Model\\PurchaseHeader', NULL, '\\App\\Http\\Controllers\\Voyager\\BarangMasukController', NULL, 1, 1, '{\"order_column\":\"document_no\",\"order_display_column\":\"document_no\",\"order_direction\":\"desc\",\"default_search_key\":\"document_no\",\"scope\":null}', '2020-06-25 00:34:50', '2020-07-03 01:45:11'),
-(18, 'sales_return_headers', 'retur-penjualan', 'Retur Penjualan', 'Retur Penjualan', 'voyager-trash', 'App\\Model\\SalesReturnHeader', NULL, '\\App\\Http\\Controllers\\Voyager\\ReturPenjualanController', NULL, 1, 1, '{\"order_column\":\"document_no\",\"order_display_column\":\"document_no\",\"order_direction\":\"desc\",\"default_search_key\":\"document_no\",\"scope\":null}', '2020-06-25 21:13:45', '2020-07-03 01:51:43'),
+(17, 'purchase_headers', 'barang-masuk', 'Barang Masuk', 'Barang Masuk', 'voyager-plus', 'App\\Model\\PurchaseHeader', NULL, '\\App\\Http\\Controllers\\Voyager\\BarangMasukController', NULL, 1, 1, '{\"order_column\":\"document_no\",\"order_display_column\":\"document_no\",\"order_direction\":\"desc\",\"default_search_key\":\"document_no\",\"scope\":null}', '2020-06-25 00:34:50', '2020-07-07 00:05:55'),
+(18, 'sales_return_headers', 'retur-penjualan', 'Retur Penjualan', 'Retur Penjualan', 'voyager-trash', 'App\\Model\\SalesReturnHeader', NULL, '\\App\\Http\\Controllers\\Voyager\\ReturPenjualanController', NULL, 1, 1, '{\"order_column\":\"document_no\",\"order_display_column\":\"document_no\",\"order_direction\":\"desc\",\"default_search_key\":\"document_no\",\"scope\":null}', '2020-06-25 21:13:45', '2020-07-07 00:06:06'),
 (19, 'sales_return_details', 'retur-penjualan-details', 'Retur Penjualan Detail', 'Retur Penjualan Details', 'voyager-trash', 'App\\Model\\SalesReturnDetail', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-06-25 21:22:41', '2020-06-26 00:24:03'),
 (20, 'upload_logs', 'upload-logs', 'Upload Log', 'Upload Logs', 'voyager-logbook', 'App\\Model\\UploadLog', NULL, '\\App\\Http\\Controllers\\Voyager\\UploadLogController', NULL, 1, 1, '{\"order_column\":\"document_no\",\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-06-29 22:23:55', '2020-06-29 22:28:43'),
 (21, 'opname_stock_details', 'opname-stock-details', 'Stok Opname Detail', 'Stok Opname Details', 'voyager-laptop', 'App\\Model\\OpnameStockDetail', NULL, NULL, NULL, 1, 0, '{\"order_column\":null,\"order_display_column\":null,\"order_direction\":\"asc\",\"default_search_key\":null,\"scope\":null}', '2020-07-03 02:51:10', '2020-07-03 03:27:08'),
-(22, 'opname_stock_headers', 'opname-stock', 'Stok Opname', 'Stok Opname', 'voyager-laptop', 'App\\Model\\OpnameStockHeader', NULL, '\\App\\Http\\Controllers\\Voyager\\OpnameStockController', NULL, 1, 1, '{\"order_column\":\"document_no\",\"order_display_column\":\"document_no\",\"order_direction\":\"desc\",\"default_search_key\":\"document_no\",\"scope\":null}', '2020-07-03 02:57:27', '2020-07-03 03:13:57');
+(22, 'opname_stock_headers', 'opname-stock', 'Stok Opname', 'Stok Opname', 'voyager-laptop', 'App\\Model\\OpnameStockHeader', NULL, '\\App\\Http\\Controllers\\Voyager\\OpnameStockController', NULL, 1, 1, '{\"order_column\":\"document_no\",\"order_display_column\":\"document_no\",\"order_direction\":\"desc\",\"default_search_key\":\"document_no\",\"scope\":null}', '2020-07-03 02:57:27', '2020-07-07 00:00:39');
 
 -- --------------------------------------------------------
 
@@ -270,7 +273,7 @@ CREATE TABLE `failed_jobs` (
   `queue` text COLLATE utf8_unicode_ci NOT NULL,
   `payload` longtext COLLATE utf8_unicode_ci NOT NULL,
   `exception` longtext COLLATE utf8_unicode_ci NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
+  `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -283,10 +286,10 @@ CREATE TABLE `items` (
   `id` int(10) UNSIGNED NOT NULL,
   `item_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `item_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `item_quantity` double DEFAULT 0,
-  `item_base_unit_1_id` int(10) UNSIGNED DEFAULT 1,
-  `item_base_unit_2_id` int(10) UNSIGNED DEFAULT 2,
-  `base_1_to_base_2` double DEFAULT 1,
+  `item_quantity` double DEFAULT '0',
+  `item_base_unit_1_id` int(10) UNSIGNED DEFAULT '1',
+  `item_base_unit_2_id` int(10) UNSIGNED DEFAULT '2',
+  `base_1_to_base_2` double DEFAULT '1',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
@@ -2626,14 +2629,14 @@ CREATE TABLE `item_ledger_entries` (
   `document_type_name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `document_id` int(10) UNSIGNED DEFAULT NULL,
   `location_code` varchar(255) COLLATE utf8_unicode_ci DEFAULT 'GH',
-  `quantity` double NOT NULL DEFAULT 0,
-  `reconciled` int(11) DEFAULT 0,
+  `quantity` double NOT NULL DEFAULT '0',
+  `reconciled` int(11) DEFAULT '0',
   `reconciled_id` int(10) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   `date` date DEFAULT '2020-06-25',
-  `balance` double NOT NULL DEFAULT 0
+  `balance` double NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -2675,7 +2678,7 @@ CREATE TABLE `menu_items` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `route` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `parameters` text COLLATE utf8_unicode_ci DEFAULT NULL
+  `parameters` text COLLATE utf8_unicode_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -3213,10 +3216,10 @@ CREATE TABLE `settings` (
   `id` int(10) UNSIGNED NOT NULL,
   `key` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `display_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `value` text COLLATE utf8_unicode_ci DEFAULT NULL,
-  `details` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `value` text COLLATE utf8_unicode_ci,
+  `details` text COLLATE utf8_unicode_ci,
   `type` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `order` int(11) NOT NULL DEFAULT 1,
+  `order` int(11) NOT NULL DEFAULT '1',
   `group` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -3320,7 +3323,7 @@ CREATE TABLE `users` (
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `settings` text COLLATE utf8_unicode_ci DEFAULT NULL,
+  `settings` text COLLATE utf8_unicode_ci,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -3330,8 +3333,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `role_id`, `name`, `email`, `avatar`, `email_verified_at`, `password`, `remember_token`, `settings`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Jonathan', 'jonathanchang96@gmail.com', 'users/default.png', NULL, '$2y$10$ZeIeleCGHXGDnCaHs.sPsucsvzZd4KbpCrZ0hRmt7p3TZIqveyYn6', '0NqJv7cNoDaBiBaBodyeqW5jbficc2G3qYxWcaELh9bgotjgv3S1MVZXLRrd', '{\"locale\":\"en\"}', '2020-06-17 00:27:42', '2020-06-30 23:33:30'),
-(2, 3, 'Intan Apriani', 'intan.apriani07@gmail.com', 'users/default.png', NULL, '$2y$10$ywwfL3TI9fUn1Yqq4o/zrezJ0y.1gMzeDINBGx6SGfSbF1OfjHu5.', 'sz7r6LFbCO5eI2KXcQS5P3N4URvv3IrjnKqfqawLbp3SGx2ypoWxHGR7c3Yj', '{\"locale\":\"en\"}', '2020-06-26 00:34:35', '2020-07-03 00:18:56');
+(1, 1, 'Jonathan', 'jonathanchang96@gmail.com', 'users/default.png', NULL, '$2y$10$ZeIeleCGHXGDnCaHs.sPsucsvzZd4KbpCrZ0hRmt7p3TZIqveyYn6', 'NfhEqAgFRxn1JVRr9WwhNnLjYZxpxhad9MpNPa1r1cJ5PrzItU9beST5u0pC', '{\"locale\":\"en\"}', '2020-06-17 00:27:42', '2020-06-30 23:33:30'),
+(2, 3, 'Intan Apriani', 'intan.apriani07@gmail.com', 'users/default.png', NULL, '$2y$10$ywwfL3TI9fUn1Yqq4o/zrezJ0y.1gMzeDINBGx6SGfSbF1OfjHu5.', 'k3ZTfZNbQodCk2av6DoZQXSD5fPkYCzSbzDVCs3YFQCX20xH84Oi9CcZ0CcY', '{\"locale\":\"en\"}', '2020-06-26 00:34:35', '2020-07-03 00:18:56');
 
 -- --------------------------------------------------------
 
@@ -3527,7 +3530,7 @@ ALTER TABLE `user_roles`
 -- AUTO_INCREMENT for table `data_rows`
 --
 ALTER TABLE `data_rows`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=257;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=260;
 
 --
 -- AUTO_INCREMENT for table `data_types`
