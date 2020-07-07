@@ -1,0 +1,258 @@
+<?php
+
+use Illuminate\Database\Seeder;
+
+class DataTypesTableSeeder extends Seeder
+{
+
+    /**
+     * Auto generated seed file
+     *
+     * @return void
+     */
+    public function run()
+    {
+        
+
+        \DB::table('data_types')->delete();
+        
+        \DB::table('data_types')->insert(array (
+            0 => 
+            array (
+                'id' => 1,
+                'name' => 'users',
+                'slug' => 'users',
+                'display_name_singular' => 'User',
+                'display_name_plural' => 'Users',
+                'icon' => 'voyager-person',
+                'model_name' => 'TCG\\Voyager\\Models\\User',
+                'policy_name' => 'TCG\\Voyager\\Policies\\UserPolicy',
+                'controller' => 'TCG\\Voyager\\Http\\Controllers\\VoyagerUserController',
+                'description' => '',
+                'generate_permissions' => 1,
+                'server_side' => 0,
+                'details' => NULL,
+                'created_at' => '2020-06-17 07:27:42',
+                'updated_at' => '2020-06-17 07:27:42',
+            ),
+            1 => 
+            array (
+                'id' => 2,
+                'name' => 'menus',
+                'slug' => 'menus',
+                'display_name_singular' => 'Menu',
+                'display_name_plural' => 'Menus',
+                'icon' => 'voyager-list',
+                'model_name' => 'TCG\\Voyager\\Models\\Menu',
+                'policy_name' => NULL,
+                'controller' => '',
+                'description' => '',
+                'generate_permissions' => 1,
+                'server_side' => 0,
+                'details' => NULL,
+                'created_at' => '2020-06-17 07:27:42',
+                'updated_at' => '2020-06-17 07:27:42',
+            ),
+            2 => 
+            array (
+                'id' => 3,
+                'name' => 'roles',
+                'slug' => 'roles',
+                'display_name_singular' => 'Role',
+                'display_name_plural' => 'Roles',
+                'icon' => 'voyager-lock',
+                'model_name' => 'TCG\\Voyager\\Models\\Role',
+                'policy_name' => NULL,
+                'controller' => 'TCG\\Voyager\\Http\\Controllers\\VoyagerRoleController',
+                'description' => '',
+                'generate_permissions' => 1,
+                'server_side' => 0,
+                'details' => NULL,
+                'created_at' => '2020-06-17 07:27:42',
+                'updated_at' => '2020-06-17 07:27:42',
+            ),
+            3 => 
+            array (
+                'id' => 7,
+                'name' => 'items',
+                'slug' => 'items',
+                'display_name_singular' => 'Item',
+                'display_name_plural' => 'Items',
+                'icon' => 'voyager-bag',
+                'model_name' => 'App\\Model\\Item',
+                'policy_name' => NULL,
+                'controller' => NULL,
+                'description' => NULL,
+                'generate_permissions' => 1,
+                'server_side' => 1,
+                'details' => '{"order_column":null,"order_display_column":null,"order_direction":"asc","default_search_key":null,"scope":null}',
+                'created_at' => '2020-06-17 07:28:07',
+                'updated_at' => '2020-06-26 07:55:15',
+            ),
+            4 => 
+            array (
+                'id' => 8,
+                'name' => 'item_base_units',
+                'slug' => 'item-base-units',
+                'display_name_singular' => 'Item Base Unit',
+                'display_name_plural' => 'Item Base Units',
+                'icon' => 'voyager-file-text',
+                'model_name' => 'App\\Model\\ItemBaseUnit',
+                'policy_name' => NULL,
+                'controller' => NULL,
+                'description' => NULL,
+                'generate_permissions' => 1,
+                'server_side' => 0,
+                'details' => '{"order_column":null,"order_display_column":null,"order_direction":"asc","default_search_key":null,"scope":null}',
+                'created_at' => '2020-06-17 07:28:15',
+                'updated_at' => '2020-06-26 07:44:46',
+            ),
+            5 => 
+            array (
+                'id' => 13,
+                'name' => 'sales_headers',
+                'slug' => 'pengeluaran-stok',
+                'display_name_singular' => 'Pengeluaran Stok',
+                'display_name_plural' => 'Pengeluaran Stok',
+                'icon' => 'voyager-truck',
+                'model_name' => 'App\\Model\\SalesHeader',
+                'policy_name' => NULL,
+                'controller' => '\\App\\Http\\Controllers\\Voyager\\PengeluaranStockController',
+                'description' => NULL,
+                'generate_permissions' => 1,
+                'server_side' => 1,
+                'details' => '{"order_column":"document_no","order_display_column":"document_no","order_direction":"desc","default_search_key":"document_no","scope":null}',
+                'created_at' => '2020-06-18 04:20:02',
+                'updated_at' => '2020-06-25 09:30:19',
+            ),
+            6 => 
+            array (
+                'id' => 14,
+                'name' => 'sales_details',
+                'slug' => 'pengeluaran-stok-details',
+                'display_name_singular' => 'Pengeluaran Stok Detail',
+                'display_name_plural' => 'Pengeluaran Stok Details',
+                'icon' => 'voyager-truck',
+                'model_name' => 'App\\Model\\SalesDetail',
+                'policy_name' => NULL,
+                'controller' => NULL,
+                'description' => NULL,
+                'generate_permissions' => 1,
+                'server_side' => 0,
+                'details' => '{"order_column":null,"order_display_column":null,"order_direction":"asc","default_search_key":null,"scope":null}',
+                'created_at' => '2020-06-19 10:40:02',
+                'updated_at' => '2020-06-26 04:26:20',
+            ),
+            7 => 
+            array (
+                'id' => 15,
+                'name' => 'item_ledger_entries',
+                'slug' => 'item-ledger-entries',
+                'display_name_singular' => 'Item Ledger Entry',
+                'display_name_plural' => 'Item Ledger Entries',
+                'icon' => 'voyager-book',
+                'model_name' => 'App\\Model\\ItemLedgerEntry',
+                'policy_name' => NULL,
+                'controller' => NULL,
+                'description' => NULL,
+                'generate_permissions' => 1,
+                'server_side' => 1,
+                'details' => '{"order_column":"item_code","order_display_column":"item_code","order_direction":"asc","default_search_key":"item_code","scope":null}',
+                'created_at' => '2020-06-24 04:24:27',
+                'updated_at' => '2020-06-29 15:00:24',
+            ),
+            8 => 
+            array (
+                'id' => 16,
+                'name' => 'purchase_details',
+                'slug' => 'sj-pembelian-details',
+                'display_name_singular' => 'SJ Pembelian Detail',
+                'display_name_plural' => 'SJ Pembelian Detail',
+                'icon' => 'voyager-plus',
+                'model_name' => 'App\\Model\\PurchaseDetail',
+                'policy_name' => NULL,
+                'controller' => NULL,
+            'description' => 'Surat Jalan Pembelian ( Penambahan Stok )',
+                'generate_permissions' => 1,
+                'server_side' => 1,
+                'details' => '{"order_column":"document_header_id","order_display_column":"document_header_id","order_direction":"desc","default_search_key":"document_header_id","scope":null}',
+                'created_at' => '2020-06-25 07:26:49',
+                'updated_at' => '2020-06-25 08:02:46',
+            ),
+            9 => 
+            array (
+                'id' => 17,
+                'name' => 'purchase_headers',
+                'slug' => 'sj-pembelian',
+                'display_name_singular' => 'SJ Pembelian',
+                'display_name_plural' => 'SJ Pembelian',
+                'icon' => 'voyager-plus',
+                'model_name' => 'App\\Model\\PurchaseHeader',
+                'policy_name' => NULL,
+                'controller' => '\\App\\Http\\Controllers\\Voyager\\SJPembelianController',
+                'description' => NULL,
+                'generate_permissions' => 1,
+                'server_side' => 1,
+                'details' => '{"order_column":"document_no","order_display_column":"document_no","order_direction":"desc","default_search_key":"document_no","scope":null}',
+                'created_at' => '2020-06-25 07:34:50',
+                'updated_at' => '2020-06-26 07:26:54',
+            ),
+            10 => 
+            array (
+                'id' => 18,
+                'name' => 'sales_return_headers',
+                'slug' => 'retur-penjualan',
+                'display_name_singular' => 'Retur Penjualan',
+                'display_name_plural' => 'Retur Penjualan',
+                'icon' => 'voyager-trash',
+                'model_name' => 'App\\Model\\SalesReturnHeader',
+                'policy_name' => NULL,
+                'controller' => '\\App\\Http\\Controllers\\Voyager\\ReturPenjualanController',
+                'description' => NULL,
+                'generate_permissions' => 1,
+                'server_side' => 1,
+                'details' => '{"order_column":"document_no","order_display_column":"document_no","order_direction":"desc","default_search_key":"document_no","scope":null}',
+                'created_at' => '2020-06-26 04:13:45',
+                'updated_at' => '2020-06-26 07:30:08',
+            ),
+            11 => 
+            array (
+                'id' => 19,
+                'name' => 'sales_return_details',
+                'slug' => 'retur-penjualan-details',
+                'display_name_singular' => 'Retur Penjualan Detail',
+                'display_name_plural' => 'Retur Penjualan Details',
+                'icon' => 'voyager-trash',
+                'model_name' => 'App\\Model\\SalesReturnDetail',
+                'policy_name' => NULL,
+                'controller' => NULL,
+                'description' => NULL,
+                'generate_permissions' => 1,
+                'server_side' => 0,
+                'details' => '{"order_column":null,"order_display_column":null,"order_direction":"asc","default_search_key":null,"scope":null}',
+                'created_at' => '2020-06-26 04:22:41',
+                'updated_at' => '2020-06-26 07:24:03',
+            ),
+            12 => 
+            array (
+                'id' => 20,
+                'name' => 'upload_logs',
+                'slug' => 'upload-logs',
+                'display_name_singular' => 'Upload Log',
+                'display_name_plural' => 'Upload Logs',
+                'icon' => 'voyager-logbook',
+                'model_name' => 'App\\Model\\UploadLog',
+                'policy_name' => NULL,
+                'controller' => '\\App\\Http\\Controllers\\Voyager\\UploadLogController',
+                'description' => NULL,
+                'generate_permissions' => 1,
+                'server_side' => 1,
+                'details' => '{"order_column":"document_no","order_display_column":null,"order_direction":"asc","default_search_key":null,"scope":null}',
+                'created_at' => '2020-06-30 05:23:55',
+                'updated_at' => '2020-06-30 05:28:43',
+            ),
+        ));
+        
+        
+    }
+}
