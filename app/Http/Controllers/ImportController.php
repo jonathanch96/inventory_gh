@@ -93,7 +93,7 @@ class ImportController extends Controller
                 'date'=>$d->date,
             ]);
             //recal item
-            $this->updateItemLedger($item_data->id,Carbon::now());
+            $this->updateItemLedger($item_data->id,$d->date);
             $counter++;
         }
         return redirect('item-ledger-entries')->with([
