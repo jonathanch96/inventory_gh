@@ -134,6 +134,7 @@
             <hr style="margin:0;">
             @endif
                 @endforeach
+                <!-- custom field detail -->
             <div class="panel-heading" style="border-bottom: 0;">
                 <h3 class="panel-title">Detail</h3>
             </div>
@@ -144,6 +145,7 @@
                 "child_connection"=>"document_header_id",
                 ])
             </div>
+                <!-- custom field detail -->
         </div>
     </div>
 </div>

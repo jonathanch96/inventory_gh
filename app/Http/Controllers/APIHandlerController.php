@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Model\Item;
 use App\Model\ItemBaseUnit;
+use App\Model\Job;
+use App\Jobs\GetItemJob;
+
 class APIHandlerController extends Controller
 {
-	private $url_1 = 'http://gcp2.southeastasia.cloudapp.azure.com/api/get_item_data';
+	private $url_1 = 'http://gcp.southeastasia.cloudapp.azure.com/public/api/get_item_data';
 	private $url_2 = 'https://payroll.dsgp.co.id/api/login_attempt';
 	private $response = array(
 		'message'=>'Data Not Found',
@@ -48,48 +51,27 @@ class APIHandlerController extends Controller
 			$this->response['message'] = "Tidak ada Item Baru pada server";
 			return json_encode($this->response);
 		}
-		$counter_add=0;
-		$counter_update=0;
-		
-		foreach ($temp_response->data as $key => $tr) {
-
-			$base_unit = ItemBaseUnit::where('base_unit_name',$tr->item_base_unit_1_id)->first();
-			if(!$base_unit){
-				$base_unit = ItemBaseUnit::create([
-					'base_unit_name'=>$tr->item_base_unit_1_id
-				]);
-
-			}
-			$base_unit_2 = ItemBaseUnit::where('base_unit_name','M2')->first();
-			if(!$base_unit_2){
-				$base_unit_2 = ItemBaseUnit::create([
-					'base_unit_name'=>'M2'
-				]);
-
-			}
-
-			//:[{"item_code":"BPL60A01","variant_code":"NC53","item_name":"POLISHED BPL-60A01 60 X 60\/NC53","item_base_unit_1_id":"DUS","base_1_to_base_2":"1.44000000000000000000"},
-			//$tr->item_code
-			$server_data = [
-				'item_code'=>$tr->item_code,
-				'item_code_w_variant'=>$tr->item_code.'/'.$tr->variant_code,
-				'item_name'=>$tr->item_name,
-				'item_base_unit_1_id'=>$base_unit->id,
-				'item_base_unit_2_id'=>$tr->base_1_to_base_2!=1?$base_unit_2->id:$base_unit->id,
-				'base_1_to_base_2'=>$tr->base_1_to_base_2,
-			];
-			$previous_data = Item::where('item_code_w_variant','=',$tr->item_code.'/'.$tr->variant_code)->first();
-			if($previous_data){
-				$previous_data->update($server_data);
-				$counter_update++;
-			}else{
-				$previous_data = Item::create($server_data);
-				$counter_add++;
-			}
+		$data_chunk = array_chunk($temp_response->data, 100);
+		foreach ($data_chunk as $key => $data) {
+			dispatch(new GetItemJob($data));
 		}
 
-		$this->response['message'] = 
-		"Successfully ".($counter_add>0?"Created ".$counter_add." Item":"").($counter_add>0&&$counter_update>0?" and ":""). ($counter_update>0?"Updated ".$counter_update." Item":"");
+
+		$counter_add=0;
+		$counter_update=0;
+
+		$job_data = Job::get();
+		while($job_data->count()!=0){
+			sleep(1);
+			$job_data = Job::get();
+
+		}
+
+		
+
+		// $this->response['message'] = 
+		// "Successfully ".($counter_add>0?"Created ".$counter_add." Item":"").($counter_add>0&&$counter_update>0?" and ":""). ($counter_update>0?"Updated ".$counter_update." Item":"");
+		$this->response['message']='Berhasil menyamakan data dengan server';
 		$this->response['alert_class'] = "success";
 		$this->response['success'] = "true";
 		$this->response['data'] = $temp_response;
