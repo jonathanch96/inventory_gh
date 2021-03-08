@@ -51,6 +51,7 @@ class APIHandlerController extends Controller
 			$this->response['message'] = "Tidak ada Item Baru pada server";
 			return json_encode($this->response);
 		}
+
 		$data_chunk = array_chunk($temp_response->data, 100);
 		foreach ($data_chunk as $key => $data) {
 			dispatch(new GetItemJob($data));
@@ -60,12 +61,12 @@ class APIHandlerController extends Controller
 		$counter_add=0;
 		$counter_update=0;
 
-		$job_data = Job::get();
-		while($job_data->count()!=0){
-			sleep(1);
-			$job_data = Job::get();
+		// $job_data = Job::get();
+		// while($job_data->count()!=0){
+		// 	sleep(1);
+		// 	$job_data = Job::get();
 
-		}
+		// }
 
 		
 

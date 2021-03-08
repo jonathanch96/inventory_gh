@@ -60,13 +60,11 @@ class GetItemJob implements ShouldQueue
                 'base_1_to_base_2'=>$tr->base_1_to_base_2,
             ];
             $previous_data = Item::where('item_code_w_variant','=',$tr->item_code.'/'.$tr->variant_code)->first();
-            // if($previous_data){
-            //     $previous_data->update($server_data);
-            //     $counter_update++;
-            // }else{
-            //     $previous_data = Item::create($server_data);
-            //     $counter_add++;
-            // }
+            if($previous_data){
+                $previous_data->update($server_data);
+            }else{
+                $previous_data = Item::create($server_data);
+            }
         }
     }
 }
